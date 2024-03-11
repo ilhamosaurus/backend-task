@@ -1,0 +1,16 @@
+version: "4.28"
+services:
+  mongo:
+    build:
+      context: ./mongodb_rs
+      args:
+        MONGO_VERSION: 4
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: 123
+      MONGO_INITDB_DATABASE: chat-api
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 27017
+    ports:
+      - "27017:27017"
