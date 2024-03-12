@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ZodFilter } from './zod/zod.error';
 import { Logger } from '@nestjs/common';
 import { v2 } from 'cloudinary';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +15,15 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new ZodFilter());
+
+  const config = new DocumentBuilder()
+    .setTitle('Backend Task for Chat-api')
+    .setDescription('Chat API')
+    .setVersion('0.0.1')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('doc', app, document);
 
   Logger.log('Starting server...');
   await app.listen(3000);

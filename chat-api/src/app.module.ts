@@ -6,7 +6,6 @@ import { UserModule } from './user/user.module';
 import { FileModule } from './file/file.module';
 import { ProfileModule } from './profile/profile.module';
 import { ClsModule } from 'nestjs-cls';
-import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -17,7 +16,6 @@ import { MessageModule } from './message/message.module';
     FileModule,
     ProfileModule,
     ClsModule.forRoot({ global: true, middleware: { mount: true } }),
-    MessageModule,
   ],
   controllers: [],
   providers: [],
