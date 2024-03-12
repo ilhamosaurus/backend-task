@@ -25,7 +25,11 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('doc', app, document);
 
-  Logger.log('Starting server...');
-  await app.listen(3000);
+  const PORT = process.env.PORT || 3000;
+  await app.listen(PORT, () => {
+    Logger.log(
+      `Running chat-api on PORT: ${process.env.PORT} in MODE: ${process.env.NODE_ENV}`,
+    );
+  });
 }
 bootstrap();

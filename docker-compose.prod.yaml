@@ -3,23 +3,23 @@ services:
   chat-api:
     build:
       context: ./chat-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     ports:
       - "3000:3000"
     environment:
       - PORT=3000
-      - NODE_ENV=development
+      - NODE_ENV=production
     volumes:
       - ./chat-api/src:/app/chat-api/src
   chat-gateway:
     build:
       context: ./chat-gateway
-      dockerfile: Dockerfile
-    ports: 
+      dockerfile: Dockerfile.prod
+    ports:
       - "3013:3013"
     environment:
       - PORT=3013
-      - NODE_ENV=development
+      - NODE_ENV=production
     volumes:
       - ./chat-gateway/src:/app/chat-gateway/src
   mongo:

@@ -1,0 +1,15 @@
+FROM node:18.13
+
+WORKDIR /app/chat-gateway
+
+COPY . .
+
+RUN npm install
+
+RUN npm run build
+
+RUN rm -rf ./src
+
+EXPOSE 3013
+
+CMD [ "npm", "run", "start:prod" ]
