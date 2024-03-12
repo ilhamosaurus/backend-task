@@ -13,7 +13,7 @@ import { SocketAuthMiddleware } from 'src/auth/ws.mw';
 
 @WebSocketGateway({ namespace: 'chat', cors: { origin: '*' } })
 // @UseGuards(WsJwtGuard)
-export class ChatGateway {
+export class ChatGateway implements OnGatewayInit {
   @WebSocketServer()
   server: Server<any, ServerToClientEvents>;
 
@@ -22,6 +22,10 @@ export class ChatGateway {
   //   client.use(SocketAuthMiddleware);
   //   Logger.log('afterInit');
   // }
+
+  afterInit() {
+    Logger.log('Initialized');
+  }
 
   sendMessage(message: Message) {
     this.server.emit('newMessage', message);
